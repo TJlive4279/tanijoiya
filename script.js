@@ -1,17 +1,28 @@
-document.addEventListener("DOMContentLoaded", function() { const ctx = document.getElementById('liveChart').getContext('2d'); const liveChart = new Chart(ctx, { type: 'line', data: { labels: ['1m', '3m', '5m', '30m'], datasets: [{ label: 'Market Trends', data: [10, 15, 7, 12], borderColor: 'blue', fill: false }] } });
+document.addEventListener("DOMContentLoaded", function() {
+    const signalList = document.getElementById("signal-list");
+    const timeFrames = ["1m", "2m", "5m", "30m"];
 
-const signals = [
-    { time: '1m', signal: 'BUY' },
-    { time: '3m', signal: 'SELL' },
-    { time: '5m', signal: 'BUY' },
-    { time: '30m', signal: 'SELL' }
-];
+    function generateSignal() {
+        const signals = ["BUY", "SELL", "HOLD"];
+        let signalData = [];
 
-const signalList = document.getElementById('signal-list');
-signals.forEach(sig => {
-    let li = document.createElement('li');
-    li.textContent = ${sig.time} - Signal: ${sig.signal};
-    signalList.appendChild(li);
-});
+        timeFrames.forEach(timeFrame => {
+            const randomSignal = signals[Math.floor(Math.random() * signals.length)];
+            signalData.push(${timeFrame}: ${randomSignal});
+        });
 
+        displaySignals(signalData);
+    }
+
+    function displaySignals(signals) {
+        signalList.innerHTML = "";
+        signals.forEach(signal => {
+            let li = document.createElement("li");
+            li.textContent = signal;
+            signalList.appendChild(li);
+        });
+    }
+
+    setInterval(generateSignal, 5000); // ہر 5 سیکنڈ میں نئے سگنل
+    generateSignal(); // پیج لوڈ ہوتے ہی پہلا سگنل دکھائے
 });
