@@ -26,3 +26,4 @@ document.addEventListener("DOMContentLoaded", function() {
     setInterval(generateSignal, 5000); // ہر 5 سیکنڈ میں نئے سگنل
     generateSignal(); // پیج لوڈ ہوتے ہی پہلا سگنل دکھائے
 });
+console.log("Script.js Loaded Successfully!")
