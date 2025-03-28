@@ -18,3 +18,27 @@
     <script src="script.js"></script>
 </body>
 </html>
+document.addEventListener("DOMContentLoaded", function() { const signalList = document.getElementById("signal-list");
+
+function generateSignal() {
+    const signals = ["BUY", "SELL", "HOLD"];
+    const randomSignal = signals[Math.floor(Math.random() * signals.length)];
+    return randomSignal;
+}
+
+function updateSignals() {
+    const timeframes = ["1m", "2m", "5m", "30m"];
+    signalList.innerHTML = "";
+
+    timeframes.forEach(timeframe => {
+        const signal = generateSignal();
+        const listItem = document.createElement("li");
+        listItem.textContent = Timeframe: ${timeframe} - Signal: ${signal};
+        signalList.appendChild(listItem);
+    });
+}
+
+setInterval(updateSignals, 5000);
+updateSignals();
+
+});
